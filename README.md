@@ -8,7 +8,7 @@ Open `index.html` in a modern browser, or serve this directory with any static w
 
 - Start immediately with **Use predefined table & explore**. All three steps collapse independently; corpus assembly is optional.
 - Edit target–context counts to retrain, or paste a corpus and click **Recount from text**.
-- Choose a symmetric context window (1–10 tokens each side). Only existing table labels contribute counts; other words still occupy positions.
+- Choose a symmetric context window (1–10 tokens each side, default 5). Only existing table labels contribute counts; other words still occupy positions.
 - See the estimated language and whether English normalization is active. Override uncertain detection when needed. The preview shows token transformations.
 - Add target rows and context columns. **Suggest contexts** offers up to 12 corpus-derived columns, with per-target counts, shared/distinctive labels, minimum-count filtering and optional function-word exclusion. Select candidates, then add and recount.
 - Suggested English/Czech emoji are editable. Only target words have icons; click a target icon in the table to open its picker. Context columns use text labels. Icons do not affect training.
@@ -43,9 +43,13 @@ Language identification is a small local heuristic using common-word evidence fr
 
 Corpus limit: 1,000,000 characters. Recounting replaces every table cell and retrains; editing text alone leaves counts unchanged and marks them as needing recount. Corpus text and settings are included in saved JSON experiments. Existing version-1 files without corpus fields remain supported.
 
+### Example corpus
+
+New experiments include a 36-sentence English corpus that exactly reconstructs the predefined 4×4 matrix at window ±5: cat and dog each have [8, 8, 2, 0], car and bus each have [0, 0, 8, 8], for contexts sleeps/eats/moves/stops. Total: 68 pairs. Sentence boundaries keep examples separate. **Load example corpus** restores this text and window without overwriting the current table; click Recount to derive counts. Previously saved text and settings remain intact on restore.
+
 ### Context suggestions
 
-Candidates are counted in the same target windows as the table. Shared candidates rank by target coverage then frequency; distinctive candidates rank by maximum PPMI × log₂(1 + pair count). PPMI uses marginals over all target-window pairs before filtering, not corpus-wide token marginals. The mixture takes up to six shared and six additional distinctive contexts, filling remaining slots by frequency. Existing context columns and target words are excluded. Most-frequent surface forms label normalized groups. The minimum total pair count defaults to 2. Function-word filtering uses small local lists and does not remove tokens from window positions. Review counts before selecting; no candidates are automatically added. Stale suggestions are rejected if the text, vocabulary, or settings change.
+Shared suggestion rows are green and distinctive rows purple, with text labels retained for accessibility and matching dark-mode colors. Candidates are counted in the same target windows as the table. Shared candidates rank by target coverage then frequency; distinctive candidates rank by maximum PPMI × log₂(1 + pair count). PPMI uses marginals over all target-window pairs before filtering, not corpus-wide token marginals. The mixture takes up to six shared and six additional distinctive contexts, filling remaining slots by frequency. Existing context columns and target words are excluded. Most-frequent surface forms label normalized groups. The minimum total pair count defaults to 2. Function-word filtering uses small local lists and does not remove tokens from window positions. Review counts before selecting; no candidates are automatically added. Stale suggestions are rejected if the text, vocabulary, or settings change.
 
 ## Privacy
 
