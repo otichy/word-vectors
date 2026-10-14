@@ -6,11 +6,11 @@ A standalone, browser-based teaching tool showing how target–context frequenci
 
 Open `index.html` in a modern browser, or serve this directory with any static website host. No build, dependencies, backend, accounts, or API keys are required. The single HTML file includes its own styles and scripts and works offline.
 
-- Start immediately with **Use predefined table & explore**. All three steps collapse independently; corpus assembly is optional.
+- Start immediately with the predefined table. All three steps collapse independently; corpus assembly is optional.
 - Edit target–context counts to retrain, or paste a corpus and click **Recount from text**.
 - Choose a symmetric context window (1–10 tokens each side, default 5). Only existing table labels contribute counts; other words still occupy positions.
 - See the estimated language and whether English normalization is active. Override uncertain detection when needed. The preview shows token transformations.
-- Add target rows and context columns. **Suggest contexts** offers up to 12 corpus-derived columns, with per-target counts, shared/distinctive labels, minimum-count filtering and optional function-word exclusion. Select candidates, then add and recount.
+- Add target rows and context columns, or remove target rows (keeping at least one). **Suggest contexts** offers up to 12 corpus-derived columns, with per-target counts, shared/distinctive labels, minimum-count filtering and optional function-word exclusion. Select candidates, then add and recount.
 - Suggested English/Czech emoji are editable. Only target words have icons; click a target icon in the table to open its picker. Context columns use text labels. Icons do not affect training.
 - Scrub 0–120 training rounds; select points, labels, table rows, or cosine neighbours.
 - Hover or focus controls for tooltips; the question-mark buttons also show help on tap.
@@ -41,11 +41,11 @@ Only English receives morphological normalization: original Porter stemming plus
 
 Language identification is a small local heuristic using common-word evidence from the first 60,000 characters, not a trained detector. It considers English, Czech, Slovak, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Russian, and Ukrainian. Short or ambiguous evidence returns uncertain and disables English normalization. Detection can be wrong, particularly for unsupported or mixed-language texts; use the manual override. Unicode letter matching does not perform dictionary-based word segmentation for languages without spaces.
 
-Corpus limit: 1,000,000 characters. Recounting replaces every table cell and retrains; editing text alone leaves counts unchanged and marks them as needing recount. Corpus text and settings are included in saved JSON experiments. Existing version-1 files without corpus fields remain supported.
+Corpus limit: 10,000,000 characters. Recounting and suggestions run in a Web Worker; suggestion vocabulary is capped at 50,000 candidates. Corpora over 1,000,000 characters use file saves instead of synchronous automatic browser storage. Recounting replaces every table cell and retrains; editing text alone leaves counts unchanged and marks them as needing recount. Corpus text and settings are included in saved JSON experiments. Existing version-1 files without corpus fields remain supported.
 
 ### Example corpus
 
-New experiments include a 36-sentence English corpus that exactly reconstructs the predefined 4×4 matrix at window ±5: cat and dog each have [8, 8, 2, 0], car and bus each have [0, 0, 8, 8], for contexts sleeps/eats/moves/stops. Total: 68 pairs. Sentence boundaries keep examples separate. **Load example corpus** restores this text and window without overwriting the current table; click Recount to derive counts. Previously saved text and settings remain intact on restore.
+New experiments include a 36-sentence English corpus that exactly reconstructs the predefined 4×4 matrix at window ±5: cat and dog each have [8, 8, 2, 0], car and bus each have [0, 0, 8, 8], for contexts sleeps/eats/moves/stops. Total: 68 pairs. Sentence boundaries keep examples separate. **Reset to defaults** restores the table, example text, and settings; click Recount to derive counts. Previously saved text and settings remain intact on restore.
 
 ### Context suggestions
 
