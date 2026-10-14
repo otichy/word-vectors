@@ -10,7 +10,7 @@ Open `index.html` in a modern browser, or serve this directory with any static w
 - Edit target–context counts to retrain, or paste a corpus and click **Recount from text**.
 - Choose a symmetric context window (1–10 tokens each side, default 5). Only existing table labels contribute counts; other words still occupy positions.
 - See the estimated language and whether English normalization is active. Override uncertain detection when needed. The preview shows token transformations.
-- Add target rows and context columns, or remove target rows (keeping at least one). **Suggest contexts** offers up to 12 corpus-derived columns, with per-target counts, shared/distinctive labels, minimum-count filtering and optional function-word exclusion. Select candidates, then add and recount.
+- Add target rows and context columns, or remove target rows and context columns with the small ? controls (keeping at least one of each). **Suggest contexts** offers up to 12 corpus-derived columns, with per-target counts, shared/distinctive labels, minimum-count filtering and optional function-word exclusion. Select candidates, then add and recount.
 - Suggested English/Czech emoji are editable. Only target words have icons; click a target icon in the table to open its picker. Context columns use text labels. Icons do not affect training.
 - Scrub 0–120 training rounds; select points, labels, table rows, or cosine neighbours.
 - Hover or focus controls for tooltips; the question-mark buttons also show help on tap.
